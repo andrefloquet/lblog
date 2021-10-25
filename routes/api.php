@@ -19,8 +19,8 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 ### Public Routes ###
 
-// Testign
-
+// Testing
+// Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 
 // Auth Routes
 Route::post('/register', [AuthController::class, 'register']);
@@ -36,5 +36,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     // Category Routes
     Route::get('/categories', [CategoryController::class, 'index']);
-	Route::post('/categories', [CategoryController::class, 'store']);
+    Route::post('/categories', [CategoryController::class, 'store']);
+    Route::get('/categories/{category}', [CategoryController::class, 'show']);
+    Route::patch('/categories/{category}', [CategoryController::class, 'update']);
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 });

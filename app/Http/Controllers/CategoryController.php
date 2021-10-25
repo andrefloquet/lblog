@@ -27,4 +27,22 @@ class CategoryController extends Controller
 		
 		return CategoryResource::collection($categories);
 	}
+
+	public function show(Category $category) 
+	{
+		return new CategoryResource($category);
+	}
+
+	public function update(Request $request, Category $category) 
+	{
+		$category->name = $request->name;
+		$category->save();
+		return new CategoryResource($category);
+	}
+
+	public function destroy(Category $category) 
+	{
+		$category->delete();
+		return response(null, 204);
+	}
 }
