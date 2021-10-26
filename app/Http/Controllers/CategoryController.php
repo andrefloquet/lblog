@@ -23,9 +23,7 @@ class CategoryController extends Controller
 		
 	public function index(Request $request) 
 	{
-		$categories = Category::all();
-		
-		return CategoryResource::collection($categories);
+		return CategoryResource::collection(Category::all());
 	}
 
 	public function show(Category $category) 

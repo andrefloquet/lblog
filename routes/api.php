@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 /*
@@ -20,7 +21,7 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 ### Public Routes ###
 
 // Testing
-// Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
+// Route::get('/posts/{post}', [PostController::class, 'show']);
 
 // Auth Routes
 Route::post('/register', [AuthController::class, 'register']);
@@ -40,4 +41,12 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/categories/{category}', [CategoryController::class, 'show']);
     Route::patch('/categories/{category}', [CategoryController::class, 'update']);
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
+
+    // Post Routes
+    Route::get('/posts', [PostController::class, 'index']);
+    Route::post('/posts', [PostController::class, 'store']);
+    Route::get('/posts/{post}', [PostController::class, 'show']);
+    Route::patch('/posts/{post}', [PostController::class, 'update']);
+    Route::delete('/posts/{post}', [PostController::class, 'destroy']);    
+
 });
